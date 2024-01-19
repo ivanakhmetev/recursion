@@ -1,38 +1,31 @@
-# 3 len(list)
+"""recursion task 3 and 4"""
 
-class my_list(list):
-
-    def __init__(self, arg):
-        super().__init__(arg)
-    
-    def my_pop(self):
-        super().pop()
-
-
-def recursive_get_len_pop_all(arg: my_list):
-    try:
-        arg.my_pop()
-        return recursive_get_len_pop_all(arg) + 1
-    except:
+def recursive_get_len_pop_all(arg: list) -> int:
+    """# 3 len(list)"""
+    if not arg:
         return 0
+    arg.pop(0)
+    return recursive_get_len_pop_all(arg) + 1
 
-a = my_list('abs')
-print(recursive_get_len_pop_all(a))
+a = list('abs')
+b = []
+assert recursive_get_len_pop_all(a) == 3
+assert recursive_get_len_pop_all(b) == 0
 
-#4 is palindrome?
-
-def recursive_is_palindrome(arg: str):
-    if len(arg) == 1:
+def recursive_is_palindrome(arg: str, start: int, end: int) -> bool:
+    '''#4 is palindrome?'''
+    if start == end:
         return True
-    if len(arg) == 2:
-        return arg[0] == arg[-1]
-    if len(arg) > 2:
-        return arg[0] == arg[-1] and recursive_is_palindrome(arg[1:-1])
+    if arg[start] != arg[end]:
+        return False
+    if start < end + 1:
+        return recursive_is_palindrome(arg, start + 1, end - 1)
+    if start > end - 1:
+        return recursive_is_palindrome(arg, end + 1, start - 1)
+    return False
 
-
-print(recursive_is_palindrome('a'))
-print(recursive_is_palindrome('aaba'))
-print(recursive_is_palindrome('baabs'))
-print(recursive_is_palindrome('aba'))
-print(recursive_is_palindrome('aboba'))
-
+assert recursive_is_palindrome('aboba', 0, 0) is True
+assert recursive_is_palindrome('aboba', 3, 1) is True
+assert recursive_is_palindrome('aboba', 1, 3) is True
+assert recursive_is_palindrome('aboba', 4, 0) is True
+assert recursive_is_palindrome('aaaba', 4, 0) is False
