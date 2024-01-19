@@ -12,7 +12,7 @@ b = []
 assert recursive_get_len_pop_all(a) == 3
 assert recursive_get_len_pop_all(b) == 0
 
-def recursive_is_palindrome(arg: str, start: int, end: int) -> bool:
+def recursive_is_palindrome(arg: str, start: int, end: int) -> bool or None:
     '''#4 is palindrome?'''
     if start == end:
         return True
@@ -20,12 +20,10 @@ def recursive_is_palindrome(arg: str, start: int, end: int) -> bool:
         return False
     if start < end + 1:
         return recursive_is_palindrome(arg, start + 1, end - 1)
-    if start > end - 1:
-        return recursive_is_palindrome(arg, end + 1, start - 1)
-    return False
+    return None
 
 assert recursive_is_palindrome('aboba', 0, 0) is True
-assert recursive_is_palindrome('aboba', 3, 1) is True
 assert recursive_is_palindrome('aboba', 1, 3) is True
-assert recursive_is_palindrome('aboba', 4, 0) is True
-assert recursive_is_palindrome('aaaba', 4, 0) is False
+assert recursive_is_palindrome('aboba', 0, 4) is True
+assert recursive_is_palindrome('aaaba', 0, 4) is False
+assert recursive_is_palindrome('aaaba', 2, -1) is None
