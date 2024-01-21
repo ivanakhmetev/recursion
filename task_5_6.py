@@ -13,14 +13,11 @@ recursive_print_even_el([1,2,3,4,5,6], 10)
 def recursive_print_even_indexs(arg: list):
     return _recursive_print_even_indexs(arg, 0)
 
-def _recursive_print_even_indexs(arg: list, start: int):
+def _recursive_print_even_indexs(arg: list, start: int) -> None:
     if start == len(arg):
-        return None
-    if start % 2 == 0:
-        print(arg[start])
-    new_start = start + 1
-    _recursive_print_even_indexs(arg, new_start)
-    return None
+        return
+    print(arg[start])
+    _recursive_print_even_indexs(arg, start + 2)
 
-print(recursive_print_even_idx([0,1,0,2,0,3]))
+print(recursive_print_even_indexs([0,1,0,2,0,3]))
     
