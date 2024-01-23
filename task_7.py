@@ -1,7 +1,7 @@
 # recursion task 7
 
 def _recursive_find_2nd_largest(arg, max_1, max_2, i):
-    if len(arg[i:]) == 0:
+    if len(arg) == i:
         return max_2
     current = arg[i]
     if current >= max_1:
